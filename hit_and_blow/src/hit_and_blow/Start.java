@@ -14,23 +14,19 @@ public class Start {
 		
 		
 		
-		// タイトル表示＆ルール説明
+		//title and rules
 		System.out.println("Hit & Blow");
-		System.out.println("隠された3つの数字をあてます。\n"
-							+"1つの数字は1から5の間です。\n"
-							+"3つの答えの中に同じ数字はありません。\n"
-							+"入力した数字の\n"
-							+"位置と数字が当たってたらヒット、\n"
-							+"数字だけあってたらブローとカウントします。\n"
-							+"全部当てたら(3つともヒットになったら)\n"
-							+"終了です。\n");
+		System.out.println("You guess three numbers that be hided.\n"
+							+"One number is the number from 1 to 5.\n"
+							+"Three answers are not the same number.\n"
+							+"\"Hit\" if the position of the entered number and the answer number hit and numbers is the same.\n"
+							+"\"Blow\" if the numbers is only same.\n"
+							+"Goal is \"3Hit\".\n"
+							+"Start!\n");
 		
-		// ランダム3文字生成
 		ArrayList<Integer> goalList = createGoaList();
 		
-		//初期化
 		int hit = 0;
-		
 		
 		while(hit<3) {
 			ArrayList<Integer> inputList = createInputList();
@@ -42,6 +38,7 @@ public class Start {
 		
 	}
 	
+	//create random three numbers from 1 to 5
 	private static ArrayList<Integer> createGoaList() {
 		ArrayList<Integer> intList = new ArrayList<Integer>();
 		for (int i = 1; i<=5; i++) {
@@ -55,8 +52,10 @@ public class Start {
 		System.out.println(goalList);
 		return goalList;
 	}
+	
+	//create the entered numbers
 	private static ArrayList<Integer> createInputList() throws IOException {
-		 System.out.println("数字を入力してください。");
+		 System.out.println("Input three numbers on console.");
 		 InputStreamReader isr = new InputStreamReader(System.in);
 		 BufferedReader br = new BufferedReader(isr);
 		 String inputStr = br.readLine();
@@ -69,15 +68,16 @@ public class Start {
 		 return inputList;
 	}
 	
+	//judgement
 	private static void judgment(ArrayList<Integer> inputList,ArrayList<Integer> goalList) {
-		//エラー判定
+		//judge errors
 		int hit = 0;
 		int blow = 0; 
 		if(inputList.get(3)<=2 || 4<=inputList.get(3)
 				 || 6<=inputList.get(0) || 6<=inputList.get(1) || 6<=inputList.get(2)) {
-			 System.out.println("答えは1～5の数字3つです。");
+			 System.out.println("Answer is three numbers from 1 to 5!");
 		 }else {
-			 // ヒットブロー判定
+			 // judge hit&blow
 			 hit = 0;
 			 blow = 0;
 			 for (int i = 0; i < goalList.size(); i++) {
@@ -89,10 +89,10 @@ public class Start {
 					 }
 				 }
 			 }
-			 System.out.println("ヒット"+hit+"ブロー"+blow);
+			 System.out.println("Hit"+hit+":Blow"+blow);
 		 }
 		 if(hit==3) {
-				System.out.println("クリア！");
+				System.out.println("Goal！");
 			}
 	}
 	
